@@ -120,14 +120,13 @@ app.get("/getguildinfo", async(req, res) => {
     })
 })
 
-app.post("/setrole/:id", async(req, res)=> {
+app.post("/setrole", async(req, res)=> {
     console.log("setrole")
-    let {role} = req.body;
-    let serverId = req.params.id;
+    let {serverId, role} = req.body;
     console.log("setrole", serverId)
 
     return res.json({
-        roleId: role,
+        role: role,
         serverId: serverId
     })
 })
