@@ -96,7 +96,7 @@ app.get("/guilds", async(req, res) => {
 app.get("/getguildinfo", async(req, res) => {
     console.log("getguildinfo", req.query.id)
 
-    // let id = req.query.id;
+    let id = req.query.id;
     // let data = await getMembers(id);
     // console.log("getguildinfo", data)
 
