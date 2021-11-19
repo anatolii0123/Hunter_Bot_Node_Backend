@@ -29,17 +29,25 @@ async function addMemberToRole(guildId, userId, roleId){
     });
     return res.json();
 }
-app.get("/getRoles", async(req, res) => {
+app.get("/getroles", async(req, res) => {
     let id = req.query.id;
     let roles = await getRoles(id);
     return res.json();
 })
 
-app.get("/addMemberToRole", async(req, res) => {
+app.post("/addmembertorole", async(req, res) => {
     let { guildId, userId, roleId } = req.body;
 
     let result = await addMemberToRole(guildId, userId, roleId);
     return result;
 })
 
+app.post("/setrole/:serverId", async(req, res)=> {
+    let {role} = req.body;
+    let serverId = req.params.serverId;
+    return res.json({
+        roleId: role,
+        serverId: serverId
+    })
+})
 module.exports = app;
