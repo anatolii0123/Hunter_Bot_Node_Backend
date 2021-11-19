@@ -120,6 +120,18 @@ app.get("/getguildinfo", async(req, res) => {
     })
 })
 
+app.post("/setrole/:id", async(req, res)=> {
+    console.log("setrole")
+    let {role} = req.body;
+    let serverId = req.params.id;
+    console.log("setrole", serverId)
+
+    return res.json({
+        roleId: role,
+        serverId: serverId
+    })
+})
+
 app.get("/prefixs", async(req, res) => {
     let id = req.query.id;
     Guild.findOne({ guildID: id }, (err, data) => {

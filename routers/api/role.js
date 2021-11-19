@@ -1,7 +1,4 @@
 const app = require("express").Router();
-const passport = require("passport");
-const User = require("../../models/User");
-const Guild = require("../../models/GuildSchema");
 const config = require("../../config");
 const crypto = require('../../utils/crypto');
 
@@ -29,6 +26,7 @@ async function addMemberToRole(guildId, userId, roleId){
     });
     return res.json();
 }
+
 app.get("/getroles", async(req, res) => {
     let id = req.query.id;
     let roles = await getRoles(id);
