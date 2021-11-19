@@ -114,8 +114,8 @@ app.get("/getguildinfo", async(req, res) => {
         members: membersfiltring.length,
         channels: data1.length,
         region: data2.region,
-        roles: data2.roles.length,
-        roles1: data2.roles,
+        // roles: data2.roles.length,
+        roles: data2.roles,
         roles2: data3,
     })
 })
