@@ -42,9 +42,9 @@ app.post("/addmembertorole", async(req, res) => {
     return result;
 })
 
-app.post("/setrole/:serverId", async(req, res)=> {
+app.post("/setrole/:id", async(req, res)=> {
     let {role} = req.body;
-    let serverId = req.params.serverId;
+    let serverId = req.params.id;
     return res.json({
         roleId: role,
         serverId: serverId
