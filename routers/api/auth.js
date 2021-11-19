@@ -7,7 +7,7 @@ app.get('/discord', passport.authenticate('discord'));
 app.get('/discord/redirect', passport.authenticate('discord', {
     failureRedirect: `${cfg.FRONTEND_URL}/`
 }), (req, res) => {
-    res.redirect(`${cfg.FRONTEND_URL}/account`)
+    res.redirect(`${cfg.FRONTEND_URL}/dashboard`)
 })
 
 app.get('/', (req, res) => {
