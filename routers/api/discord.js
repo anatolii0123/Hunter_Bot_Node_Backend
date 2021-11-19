@@ -97,8 +97,8 @@ app.get("/getguildinfo", async(req, res) => {
     console.log("getguildinfo", req.query.id)
 
     let id = req.query.id;
-    // let data = await getMembers(id);
-    // console.log("getguildinfo", data)
+    let data = await getMembers(id);
+    console.log("getguildinfo", data)
 
     let data1 = await getChannels(id)
     console.log("getguildinfo1", data1)
@@ -109,9 +109,9 @@ app.get("/getguildinfo", async(req, res) => {
     let data3 = await getRoles(id);
     console.log("getguildinfo3", data3)
 
-    // const membersfiltring = data.filter(d => !d.user.bot)
+    const membersfiltring = data.filter(d => !d.user.bot)
     return res.json({
-        // members: membersfiltring.length,
+        members: membersfiltring.length,
         channels: data1.length,
         region: data2.region,
         roles: data2.roles.length,
