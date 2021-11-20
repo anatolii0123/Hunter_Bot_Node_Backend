@@ -14,7 +14,7 @@ const getRoles = async (guildId) => {
         },
     });
 
-    return result.json();
+    return result;
 }
 
 module.exports = {

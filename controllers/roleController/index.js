@@ -3,7 +3,7 @@ const roleService = require('../../services/roleService');
 const get = async (req, res, next) => {
     let guildId = req.query.guildId
     let result = await roleService.getRoles(guildId)
-    return result
+    res.json(result)
 }
 
 // const create = async (req, res, next) => {
