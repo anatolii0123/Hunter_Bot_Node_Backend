@@ -45,7 +45,11 @@ const getGuilds = async (req) => {
             let permissionNoGuilds = data.filter((item) =>
                 permissionHasGuilds.every((item2) => item2.id != item.id)
             );
-
+            console.log("return guilds", {
+                permissionNoGuilds: permissionNoGuilds,
+                permissionHasGuilds: permissionHasGuilds,
+                msg: "authorized"
+            })
             return {
                 permissionNoGuilds: permissionNoGuilds,
                 permissionHasGuilds: permissionHasGuilds,
