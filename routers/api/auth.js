@@ -6,6 +6,12 @@ const config = require('../../config')
 const passport = require('passport')
 
 router.get('/', controller.get);
+
+router.get('/logout', function (req, res) {
+    req.logout();
+    res.redirect('/');
+})
+
 router.get('/discord', passport.authenticate('discord'));
 router.get('/discord/redirect',
     passport.authenticate('discord', {
