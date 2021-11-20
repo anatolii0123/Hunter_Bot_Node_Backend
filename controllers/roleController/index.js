@@ -4,7 +4,9 @@ const get = async (req, res, next) => {
     let guildId = req.query.guildId
     let result = await roleService.getRoles(guildId)
     console.log("roleController", result)
-    res.json(result)
+    res.json({
+        roles: result
+    })
 }
 
 // const create = async (req, res, next) => {

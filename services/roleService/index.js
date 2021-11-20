@@ -12,9 +12,7 @@ const getRoles = async (guildId) => {
         },
     });
 
-    return {
-        roles: res.json()
-    }
+    return res.json()
 }
 
 module.exports = {
