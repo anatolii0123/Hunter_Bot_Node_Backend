@@ -15,6 +15,7 @@ const getOwnerGuilds = async () => {
             Authorization: `Bot ${crypto.decrypt(config.token)}`,
         },
     });
+    console.log("getOwnerGuilds", res)
     return res.json();
 }
 
@@ -25,8 +26,11 @@ const getServerPermission = (userGuilds) => {
 const getGuilds = async (req) => {
     if (req.user) {
         const user = await UserSchema.findOne({ discordId: req.user.discordId });
+        console.log("UserSchema", user)
+
         const userGuilds = user.guilds;
         const ownerGuilds = await getOwnerGuilds();
+        console.log("ownerGuilds", ownerGuilds)
 
         if (user) {
             let permissionHasGuilds = userGuilds.filter((userguild) =>
