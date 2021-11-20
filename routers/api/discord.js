@@ -116,6 +116,7 @@ app.get("/getguildinfo", async (req, res) => {
     })
 })
 
+
 app.get("/prefixs", async (req, res) => {
     let id = req.query.id;
     Guild.findOne({ guildID: id }, (err, data) => {
