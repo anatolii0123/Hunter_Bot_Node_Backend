@@ -11,9 +11,10 @@ const getRoles = async (guildId) => {
             Authorization: `Bot ${crypto.decrypt(config.token)}`,
         },
     });
-    const rest = await result.json()
-    console.log("role service", rest)
-    return rest
+
+    return {
+        roles: await result.json()
+    }
 }
 
 module.exports = {
