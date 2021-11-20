@@ -10,21 +10,7 @@ const get = async (req, res, next) => {
     }
 }
 
-const discord = () => {
-    return passport.authenticate('discord')
-
-}
-
-const redirect = () => {
-    passport.authenticate('discord', {
-        failureRedirect: `${config.FRONTEND_URL}/`
-    }), (req, res) => {
-        res.redirect(`${config.FRONTEND_URL}/dashboard`)
-    }
-}
-
 module.exports = {
     get,
-    discord,
-    redirect,
+
 }

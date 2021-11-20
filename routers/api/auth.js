@@ -1,10 +1,18 @@
 const express = require('express');
 const router = express.Router();
 const controller = require('../../controllers/authController');
+
+const config = require('../../config')
 const passport = require('passport')
 
-router.get('/', passport.authenticate('discord'));
-router.get('/discord', controller.discord);
-router.get('/discord/redirect', controller.redirect);
+router.get('/', controller.get);
+router.get('/discord', passport.authenticate('discord'));
+router.get('/discord/redirect',
+    passport.authenticate('discord', {
+        failureRedirect: `${config.FRONTEND_URL}/`
+    }), (req, res) => {
+        res.redirect(`${config.FRONTEND_URL}/dashboard`)
+    }
+);
 
 module.exports = router;
