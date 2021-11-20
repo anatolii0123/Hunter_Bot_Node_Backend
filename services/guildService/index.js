@@ -41,6 +41,7 @@ const getGuilds = async (req) => {
             let permissionNoGuilds = data.filter((item) =>
                 permissionHasGuilds.every((item2) => item2.id != item.id)
             );
+
             res.json({ permissionNoGuilds: permissionNoGuilds, permissionHasGuilds: permissionHasGuilds, msg: "authorized" });
         }
     } else {
