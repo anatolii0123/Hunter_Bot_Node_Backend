@@ -18,9 +18,10 @@ const getOwnerGuilds = async () => {
     return res.json();
 }
 
-function getServerPermission(ug) {
+const getServerPermission = (ug) => {
     return ug.filter((userGuilds) => (userGuilds.permissions & 0x20) === 0x20);
 }
+
 const getGuilds = async (req) => {
     if (req.user) {
         const user = await UserSchema.findOne({ discordId: req.user.discordId });
