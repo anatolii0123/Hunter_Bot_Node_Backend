@@ -50,6 +50,7 @@ const getGuilds = async (req) => {
                 permissionHasGuilds: permissionHasGuilds,
                 msg: "authorized"
             })
+
             return {
                 permissionNoGuilds: permissionNoGuilds,
                 permissionHasGuilds: permissionHasGuilds,

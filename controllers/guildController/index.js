@@ -1,7 +1,7 @@
 const guildService = require('../../services/guildService');
 
 const get = async (req, res, next) => {
-    let result = guildService.getGuilds(req);
+    let result = await guildService.getGuilds(req);
     res.json(result)
 }
 
