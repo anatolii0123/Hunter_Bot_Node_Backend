@@ -11,7 +11,8 @@ const get = async (req, res, next) => {
 }
 
 const discord = () => {
-    passport.authenticate('discord')
+    return passport.authenticate('discord')
+
 }
 
 const redirect = () => {
