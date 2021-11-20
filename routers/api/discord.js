@@ -5,9 +5,9 @@ const Guild = require("../../models/GuildSchema");
 const config = require("../../config");
 const crypto = require('../../utils/crypto');
 const fetch = (...args) =>
-    import ("node-fetch").then(({ default: fetch }) => fetch(...args));
+    import("node-fetch").then(({ default: fetch }) => fetch(...args));
 
-async function bGetGuilds() {
+async function getBotGuilds() {
     const res = await fetch("http://discord.com/api/v9/users/@me/guilds", {
         method: "GET",
         headers: {
@@ -60,67 +60,63 @@ async function getRoles(id) {
 }
 
 function getServerPermission(ug) {
-    return ug.filter((uguilds) => (uguilds.permissions & 0x20) === 0x20);
+    return ug.filter((userGuilds) => (userGuilds.permissions & 0x20) === 0x20);
 }
 
 app.get("/", (req, res) => {
     res.send("good");
 });
 
-app.get("/guilds", async(req, res) => {
+app.get("/guilds", async (req, res) => {
 
     if (req.user) {
         const user = await User.findOne({ discordId: req.user.discordId });
-        const uguilds = user.guilds;
-        const bguilds = await bGetGuilds();
+        const userGuilds = user.guilds;
+        const botGuilds = await getBotGuilds();
 
         if (user) {
-            let comservs = uguilds.filter((userguild) =>
-                bguilds.find(
+            let permissionHasGuilds = userGuilds.filter((userguild) =>
+                botGuilds.find(
                     (botguild) =>
-                    botguild.id === userguild.id &&
-                    (userguild.permissions & 0x20) === 0x20
+                        botguild.id === userguild.id &&
+                        (userguild.permissions & 0x20) === 0x20
                 )
             );
-            let data = getServerPermission(uguilds);
-            let permnocom = data.filter((item) =>
-                comservs.every((item2) => item2.id != item.id)
+
+            let data = getServerPermission(userGuilds);
+            let permissionNoGuilds = data.filter((item) =>
+                permissionHasGuilds.every((item2) => item2.id != item.id)
             );
-            res.json({ permincom: permnocom, comservs, msg: "authorized" });
+            res.json({ permissionNoGuilds: permissionNoGuilds, permissionHasGuilds: permissionHasGuilds, msg: "authorized" });
         }
     } else {
         res.json({ msg: "unauthorized" });
     }
 });
 
-app.get("/getguildinfo", async(req, res) => {
+app.get("/getguildinfo", async (req, res) => {
     console.log("getguildinfo", req.query.id)
 
     let id = req.query.id;
     let data = await getMembers(id);
-    console.log("getguildinfo", data)
 
     let data1 = await getChannels(id)
-    console.log("getguildinfo1", data1)
 
     let data2 = await getDetailsServer(id)
-    console.log("getguildinfo2", data2)
 
     let data3 = await getRoles(id);
-    console.log("getguildinfo3", data3)
 
     const membersfiltring = data.filter(d => !d.user.bot)
     return res.json({
         members: membersfiltring.length,
         channels: data1.length,
         region: data2.region,
-        // roles: data2.roles.length,
         roles: data2.roles,
         roles2: data3,
     })
 })
 
-app.get("/prefixs", async(req, res) => {
+app.get("/prefixs", async (req, res) => {
     let id = req.query.id;
     Guild.findOne({ guildID: id }, (err, data) => {
         if (err) console.log(err);
@@ -130,7 +126,7 @@ app.get("/prefixs", async(req, res) => {
     });
 });
 
-app.post("/prefixs", async(req, res) => {
+app.post("/prefixs", async (req, res) => {
     let { prefix, id } = req.body;
     try {
         const findUser = await Guild.findOneAndUpdate({ guildID: id }, {
