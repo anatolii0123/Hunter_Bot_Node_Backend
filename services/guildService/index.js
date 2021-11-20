@@ -43,6 +43,7 @@ const getGuilds = async (req) => {
             );
 
             res.json({ permissionNoGuilds: permissionNoGuilds, permissionHasGuilds: permissionHasGuilds, msg: "authorized" });
+
         }
     } else {
         res.json({ msg: "unauthorized" });
