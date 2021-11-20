@@ -11,9 +11,9 @@ const getRoles = async (guildId) => {
         },
     });
 
-    console.log("role service", result)
+    console.log("role service", result.json())
 
-    return result;
+    return result.json();
 }
 
 module.exports = {
