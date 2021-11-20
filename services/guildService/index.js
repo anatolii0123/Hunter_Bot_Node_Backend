@@ -46,11 +46,15 @@ const getGuilds = async (req) => {
                 permissionHasGuilds.every((item2) => item2.id != item.id)
             );
 
-            res.json({ permissionNoGuilds: permissionNoGuilds, permissionHasGuilds: permissionHasGuilds, msg: "authorized" });
+            return {
+                permissionNoGuilds: permissionNoGuilds,
+                permissionHasGuilds: permissionHasGuilds,
+                msg: "authorized"
+            }
 
         }
     } else {
-        res.json({ msg: "unauthorized" });
+        return { msg: "unauthorized" }
     }
 }
 
