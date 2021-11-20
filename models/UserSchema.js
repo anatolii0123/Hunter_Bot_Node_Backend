@@ -1,6 +1,6 @@
 const mongoose = require('mongoose')
 const { Schema, model } = require('mongoose')
-const Role = require('./Role');
+const RoleSchema = require('./RoleSchema');
 
 let schema = Schema({
     discordId: {
@@ -20,7 +20,7 @@ let schema = Schema({
         type: Array,
         required: true
     },
-    role: [{type: mongoose.Schema.Types.ObjectId, ref: 'Role'}]
+    role: [{ type: mongoose.Schema.Types.ObjectId, ref: 'RoleSchema' }]
 })
 
 module.exports = model('User', schema)

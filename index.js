@@ -6,7 +6,6 @@ const passport = require('passport')
 const config = require('./config')
 const MongoDbStore = require('connect-mongo');
 
-let aplicatie = require('./routers/api')
 
 let mongoose = require('mongoose')
 mongoose.connect(config.database)
@@ -39,7 +38,10 @@ app.use(passport.session());
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
 app.get('/test', (req, res) => res.json({ msg: "success" }))
-app.use('/api', aplicatie)
+
+let apiRoutes = require('./routers')
+app.use('/api', apiRoutes)
+
 console.log('frontend_build', `${__dirname}/build`)
 app.use(express.static(`${__dirname}/build`))
 
