@@ -9,7 +9,7 @@ router.get('/', controller.get);
 
 router.get('/logout', function (req, res) {
     req.logout();
-    res.redirect('/');
+    res.json({ status: 'success' })
 })
 
 router.get('/discord', passport.authenticate('discord'));
