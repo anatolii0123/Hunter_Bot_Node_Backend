@@ -18,8 +18,8 @@ const getOwnerGuilds = async () => {
     return res.json();
 }
 
-const getServerPermission = (ug) => {
-    return ug.filter((userGuilds) => (userGuilds.permissions & 0x20) === 0x20);
+const getServerPermission = (userGuilds) => {
+    return userGuilds.filter((ug) => (ug.permissions & 0x20) === 0x20);
 }
 
 const getGuilds = async (req) => {
