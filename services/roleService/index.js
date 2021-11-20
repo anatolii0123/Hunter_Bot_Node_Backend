@@ -12,7 +12,6 @@ const getRoles = async (guildId) => {
     });
 
     console.log("role service", result.json())
-
     return result.json();
 }
 
