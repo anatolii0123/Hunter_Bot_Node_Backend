@@ -11,7 +11,7 @@ const get = async (req, res, next) => {
     discordRoles.filter((val) => val.name !== '@everyone' && !val.tags).map((val) => {
 
         if (dbRoles) {
-            let dbRole = dbRoles.find(val => val.id === val.id)
+            let dbRole = dbRoles.find(dbRole => dbRole.id === val.id)
             if (dbRole) {
                 val.price = dbRole.price
             } else {
