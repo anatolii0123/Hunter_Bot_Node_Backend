@@ -5,7 +5,7 @@ const crypto = require("../../utils/crypto")
 
 // Model
 const UserSchema = require("../../models/UserSchema")
-const GuildSchema = require("../../models/GuildSchema")
+// const GuildSchema = require("../../models/GuildSchema")
 // Model
 
 const getOwnerGuilds = async () => {
