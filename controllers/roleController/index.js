@@ -37,7 +37,7 @@ const modifyRole = async (req, res, next) => {
     let roleObj = await roleService.findRole(role.id);
     console.log("roleService.findRole", roleObj)
 
-    if (roleObj)
+    if (roleObj.length > 0)
         roleObj = await roleService.updateRole(roleObj, role);
     else
         roleObj = await roleService.createRole(role);
