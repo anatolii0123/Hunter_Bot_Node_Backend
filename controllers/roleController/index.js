@@ -11,7 +11,7 @@ const get = async (req, res, next) => {
     discordRoles.filter((val) => val.name !== '@everyone' && !val.tags).map((val) => {
 
         if (dbRoles) {
-            let dbRole = dbRoles.find(dbRole => dbRole.id === val.id)
+            let dbRole = dbRoles.find(temp => temp.id === val.id)
             if (dbRole) {
                 val.price = dbRole.price
             } else {
@@ -22,7 +22,6 @@ const get = async (req, res, next) => {
         }
         result.push(val)
     })
-
 
     console.log("result role", result)
     res.json({
@@ -41,7 +40,8 @@ const modifyRole = async (req, res, next) => {
         roleObj = await roleService.updateRole(roleObj, role);
     else
         roleObj = await roleService.createRole(role);
-    res.json(roleObj);
+
+    get(roleObj.guildId)
 }
 
 module.exports = {
