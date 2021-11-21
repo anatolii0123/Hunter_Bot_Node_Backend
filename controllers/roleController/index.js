@@ -7,13 +7,7 @@ const get = async (req, res, next) => {
     let dbRoles = roleService.getRolesFromDB(guildId)
 
     let result = [];
-    discordRoles.map((discordRole) => {
-        if (discordRole.name === "@everyone")
-            continue
-        if (discordRole.tags) {
-            if (discordRole.tags.bot_id)
-                continue
-        }
+    discordRoles.filter((discordRole) => discordRole.name !== '@everyone' && !discordRole.tags).map((discordRole) => {
 
         if (dbRoles) {
             let dbRole = dbRoles.find(val => val.id === discordRole.id)
