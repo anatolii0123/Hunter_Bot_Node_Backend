@@ -26,7 +26,6 @@ const modifyRole = async (req, res, next) => {
     })
 }
 
-
 const getRoles = async (guildId) => {
     let discordRoles = await roleService.getRolesFromDiscord(guildId)
     let dbRoles = await roleService.getRolesFromDB(guildId)
