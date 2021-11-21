@@ -33,6 +33,7 @@ const get = async (req, res, next) => {
 const modifyRole = async (req, res, next) => {
     const { role } = req.body;
     console.log("modify role", role)
+
     let roleObj = await roleService.findRole(role.id);
     console.log("roleService.findRole", roleObj)
 

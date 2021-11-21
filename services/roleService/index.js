@@ -40,7 +40,7 @@ const updateRole = async (roleObj, role) => {
 }
 
 const findRole = async id => {
-    const role = await RoleSchema.findById(id);
+    const role = await RoleSchema.find({ id: id });
     return role;
 }
 
