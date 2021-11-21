@@ -3,6 +3,6 @@ const router = express.Router();
 const controller = require('../../controllers/roleController');
 
 router.get('/', controller.get);
-router.post('/', controller.modifyRole);
+router.post('/modifyRole', controller.modifyRole);
 
 module.exports = router;
