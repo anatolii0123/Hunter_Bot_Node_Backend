@@ -7,20 +7,20 @@ const get = async (req, res, next) => {
     let dbRoles = roleService.getRolesFromDB(guildId)
 
     let result = [];
-    console.log(discordRoles);
-    discordRoles.filter((discordRole) => discordRole.name !== '@everyone' && !discordRole.tags).map((discordRole) => {
+    console.log("get discord roles", discordRoles);
+    discordRoles.filter((val) => val.name !== '@everyone' && !val.tags).map((val) => {
 
         if (dbRoles) {
-            let dbRole = dbRoles.find(val => val.id === discordRole.id)
+            let dbRole = dbRoles.find(val => val.id === val.id)
             if (dbRole) {
-                discordRole.price = dbRole.price
+                val.price = dbRole.price
             } else {
-                discordRole.price = null
+                val.price = null
             }
         } else {
-            discordRole.price = null
+            val.price = null
         }
-        result.push(discordRole)
+        result.push(val)
     })
 
 
