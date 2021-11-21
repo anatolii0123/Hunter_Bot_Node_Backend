@@ -2,7 +2,32 @@ const roleService = require('../../services/roleService');
 
 const get = async (req, res, next) => {
     let guildId = req.query.guildId
+    let roles = await getRoles(guildId)
+    res.json({
+        roles: roles
+    })
+}
 
+const modifyRole = async (req, res, next) => {
+    const { role } = req.body;
+    console.log("modify role", role)
+
+    let roleObj = await roleService.findRole(role.id);
+    console.log("roleService.findRole", roleObj)
+
+    if (roleObj !== null)
+        roleObj = await roleService.updateRole(roleObj, role);
+    else
+        roleObj = await roleService.createRole(role);
+
+    let roles = await getRoles(roleObj.guildId)
+    res.json({
+        roles: roles
+    })
+}
+
+
+const getRoles = async (guildId) => {
     let discordRoles = await roleService.getRolesFromDiscord(guildId)
     let dbRoles = await roleService.getRolesFromDB(guildId)
 
@@ -24,24 +49,7 @@ const get = async (req, res, next) => {
     })
 
     console.log("result role", result)
-    res.json({
-        roles: result
-    })
-}
-
-const modifyRole = async (req, res, next) => {
-    const { role } = req.body;
-    console.log("modify role", role)
-
-    let roleObj = await roleService.findRole(role.id);
-    console.log("roleService.findRole", roleObj)
-
-    if (roleObj !== null)
-        roleObj = await roleService.updateRole(roleObj, role);
-    else
-        roleObj = await roleService.createRole(role);
-
-    get(roleObj.guildId)
+    return result
 }
 
 module.exports = {
