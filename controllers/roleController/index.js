@@ -22,6 +22,7 @@ const get = async (req, res, next) => {
         result.push(discordRole)
     })
 
+
     console.log("result role", result)
     res.json({
         roles: result
