@@ -3,8 +3,8 @@ const roleService = require('../../services/roleService');
 const get = async (req, res, next) => {
     let guildId = req.query.guildId
 
-    let discordRoles = roleService.getRolesFromDiscord(guildId)
-    let dbRoles = roleService.getRolesFromDB(guildId)
+    let discordRoles = await roleService.getRolesFromDiscord(guildId)
+    let dbRoles = await roleService.getRolesFromDB(guildId)
 
     let result = [];
     console.log("get discord roles", discordRoles);
