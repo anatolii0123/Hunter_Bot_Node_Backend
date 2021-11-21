@@ -44,10 +44,24 @@ const findRole = async id => {
     return role;
 }
 
+const addMemberToRole = async (guildId, userId, roleId) => {
+
+    const res = await fetch(`http://discord.com/api/v9/guilds/${guildId}/members/${userId}/roles/${roleId}`, {
+        method: "GET",
+        headers: {
+            Authorization: `Bot ${crypto.decrypt(config.token)}`,
+        },
+    });
+
+    // fetch josn is Promise, we need to use await.
+    return await res.json()
+}
+
 module.exports = {
     getRolesFromDiscord,
     getRolesFromDB,
     createRole,
     updateRole,
     findRole,
+    addMemberToRole,
 }
