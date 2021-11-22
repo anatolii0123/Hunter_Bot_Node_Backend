@@ -46,15 +46,20 @@ const findRole = async id => {
 
 const addMemberToRole = async (guildId, userId, roleId) => {
 
-    const res = await fetch(`http://discord.com/api/v9/guilds/${guildId}/members/${userId}/roles/${roleId}`, {
-        method: "PUT",
-        headers: {
-            Authorization: `Bot ${crypto.decrypt(config.token)}`,
-        },
-    });
-    console.log("addMemberToRole", await res.json())
+    let res;
+    try {
+        res = await fetch(`http://discord.com/api/v9/guilds/${guildId}/members/${userId}/roles/${roleId}`, {
+            method: "PUT",
+            headers: {
+                Authorization: `Bot ${crypto.decrypt(config.token)}`,
+            },
+        });
+    }
+    catch (error) {
+        console.log("error", error)
+    }
     // fetch josn is Promise, we need to use await.
-    return await res.json()
+    return true
 }
 
 module.exports = {
