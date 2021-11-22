@@ -55,13 +55,12 @@ const addMemberToRole = async (guildId, userId, roleId) => {
             },
         });
         console.log("addMemberToRole  1")
-        return true;
     }
     catch (error) {
         console.log("server-error", error)
         return false;
     }
-    // fetch josn is Promise, we need to use await.
+    return true;
 }
 
 module.exports = {
