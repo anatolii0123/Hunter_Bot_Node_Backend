@@ -29,9 +29,10 @@ const modifyRole = async (req, res, next) => {
 
 const buyRole = async (req, res, next) => {
     let { guildId, userId, roleId } = req.body
-    await roleService.addMemberToRole(guildId, userId, roleId)
+    let result = await roleService.addMemberToRole(guildId, userId, roleId)
     res.json({
-        status: "success"
+        status: "success",
+        result: result
     })
 }
 
