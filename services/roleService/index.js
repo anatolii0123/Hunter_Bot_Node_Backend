@@ -55,10 +55,12 @@ const addMemberToRole = async (guildId, userId, roleId) => {
             },
         });
 
-        console.log(await res.json())
+        console.log("addMemberToRole  1", await res.json())
         return await res.json();
     }
     catch (error) {
+        console.log("addMemberToRole  2", await res.json())
+
         console.log("server-error", error)
     }
     // fetch josn is Promise, we need to use await.
