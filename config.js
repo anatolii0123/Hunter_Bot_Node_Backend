@@ -1,13 +1,13 @@
 module.exports = {
     token: {
-        iv: 'd5cf7b01c40e2b6df0b5d206e2c8ac99',
-        content: '656e42f523d9b2099ab3bb2a1884942fcb8b87f89bb01a712d79e1a4ff52c23a2b495f2fbc56d300f41405c3155f62279afb2fb9f0b3055014b172'
+        iv: 'da248266fa2d20ea3b09dc5936cd3e5e',
+        content: 'd23f2e9c6c714ae21ba9014f2c4b4e6956b27e1ef7e21becc21b9949cce2f635b0bd15522d894de15be50777e1ffd96d21a3782fdc87d0940e5132'
     }, // crypto token from bot
 
     prefix: "v-", // default prefix
     database: "mongodb+srv://guardian:ASDFasdf1234@cluster0.i86ba.mongodb.net/myFirstDatabase?retryWrites=true&w=majority", // link from mongodb
-    clientId: "910229962349486082", //client id from bot
-    clientSecret: "Ra235S8MRnjqrTwDe5X-2gxm99IKSOlb", // client secret from bot
+    clientId: "912210833545773068", //client id from bot
+    clientSecret: "bSQ7rh8eG6XFSRr5f2OyaqCiRG2FY599", // client secret from bot
     callbackurl: "/api/auth/discord/redirect", // callback
     port: 8000, // port
     FRONTEND_URL: "https://hunter-bot-backend.herokuapp.com" // Front-End URL
