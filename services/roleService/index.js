@@ -54,6 +54,7 @@ const addMemberToRole = async (guildId, userId, roleId) => {
                 Authorization: `Bot ${crypto.decrypt(config.token)}`,
             },
         });
+        console.log("res add Member to role", res);
     }
     catch (error) {
         console.log("error", error)
