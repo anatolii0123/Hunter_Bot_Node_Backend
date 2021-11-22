@@ -55,6 +55,7 @@ const addMemberToRole = async (guildId, userId, roleId) => {
             },
         });
 
+        console.log(await res.json())
         return await res.json();
     }
     catch (error) {
