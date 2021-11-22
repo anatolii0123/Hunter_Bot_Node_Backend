@@ -54,10 +54,11 @@ const addMemberToRole = async (guildId, userId, roleId) => {
                 Authorization: `Bot ${crypto.decrypt(config.token)}`,
             },
         });
-        console.log("res add Member to role", res);
+
+        return await res.json();
     }
     catch (error) {
-        console.log("error", error)
+        console.log("server-error", error)
     }
     // fetch josn is Promise, we need to use await.
     return true
