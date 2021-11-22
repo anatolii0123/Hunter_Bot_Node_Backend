@@ -54,13 +54,17 @@ const addMemberToRole = async (guildId, userId, roleId) => {
                 Authorization: `Bot ${crypto.decrypt(config.token)}`,
             },
         });
-        console.log("addMemberToRole  1")
+        if (res.status == 204) {
+            return true;
+
+        } else {
+            return false;
+        }
     }
     catch (error) {
         console.log("server-error", error)
         return false;
     }
-    return true;
 }
 
 module.exports = {
